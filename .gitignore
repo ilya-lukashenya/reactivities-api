@@ -5,6 +5,8 @@
 # config files
 App.Debug.config
 
+appsettings.json
+
 # User-specific files
 *.idea
 *.suo

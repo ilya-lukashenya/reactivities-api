@@ -2,6 +2,7 @@ using MediatR;
 using Domain;
 using System;
 using Persistence;
+using FluentValidation;
 
 namespace Application.Activities
 {
@@ -11,6 +12,8 @@ namespace Application.Activities
         {
             public Guid Id { get; set; }
         }
+
+        
 
         public class Handler : IRequestHandler<Query, Activity?>
         {
@@ -25,6 +28,15 @@ namespace Application.Activities
             {
                 return await _context.Activities.FindAsync(request.Id);
             }
+
         }
+        
+        public class Validator : AbstractValidator<Query> {
+            public Validator()
+            {
+                RuleFor(query => query.Id).NotEmpty();
+            }
+        }
+
     }
 }

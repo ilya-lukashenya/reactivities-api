@@ -13,9 +13,12 @@ namespace API.Controllers
 
         [HttPost("login")]
         public async Task<ActionResult<UserDto>> Login(LoginDto loginDto) {
+
             var user = await _userManager.FindByEmailAsync(loginDto.Email);
+
             if (user == null) return Unauthorized();
-            vzr result = await _userManager.CheckPasswordAsync(user, loginDto.Password);
+
+            var result = await _userManager.CheckPasswordAsync(user, loginDto.Password);
 
             if(result) {
                 return new UserDto {

@@ -1,8 +1,11 @@
+using System.Security.AccessControl;
+using System.Security.Claims;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace API.Services
 {
@@ -27,6 +30,7 @@ namespace API.Services
             var tokenHandler = new JwtSecurityTokenHandler();
             
             var token = tokenHandler.CreateToken(tokenDescriptor);
+            
             return tokenHandler.WriteToken(token);
             }
     }

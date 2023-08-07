@@ -24,11 +24,11 @@ namespace API
 
             try
             {
-                var context = services.GetRequiredService<DataContext>();
+                var context = services.GetRequiredService<UserManager<AppUser>>();
 
                 await context.Database.MigrateAsync();
 
-                await Seed.SeedData(context);
+                await Seed.SeedData(context, UserManager);
             }
             catch(Exception ex)
             {

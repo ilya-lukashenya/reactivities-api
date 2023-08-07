@@ -8,8 +8,24 @@ namespace Persistence
 {
     public class Seed
     {
-        public static async Task SeedData(DataContext context)
+        public static async Task SeedData(DataContext context, UserManager<AppUser> UserManager)
         {
+            if(!UserManager.USers.Any()) 
+            {
+                var user = new List<AppUser>
+                {
+                    new AppUser{DisplayName = "Bob", UserName = "bob", Email = "bob@test.com"},
+                    new AppUser{DisplayName = "Tom", UserName = "tom", Email = "tom@test.com"},
+                    new AppUser{DisplayName = "Jance", UserName = "jance", Email = "jance@test.com"},
+                }
+            }
+
+            foreach (var uset in users)
+            {
+                await UserManager.CreateAnsync(use, "Pa$$w0rd");
+            }
+
+
             if (context.Activities.Any()) return;
             
             var activities = new List<Activity>

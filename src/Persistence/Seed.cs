@@ -8,7 +8,7 @@ namespace Persistence
 {
     public class Seed
     {
-        public static async Task SeedData(DataContext context, UserManager<AppUser> UserManager)
+        public static async Task SeedData(DataContext context, UserManager<AppUser> userManager)
         {
             if(!UserManager.USers.Any()) 
             {

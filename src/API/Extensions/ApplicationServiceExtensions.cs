@@ -1,3 +1,5 @@
+using System.Runtime.Serialization;
+using System.Net.Security;
 using Microsoft.Extensions.DependencyInjection;
 using AutoMapper;
 using Microsoft.Extensions.Configuration;
@@ -17,18 +19,13 @@ namespace API.Extensions
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services, IConfiguration config) 
         {
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebAPIv5", Version = "v1" });
-            });
+            services.AddEndpointsApiExplorer();
+            services.AddSwaggerGen();
             services.AddDbContext<DataContext>(opt =>
             {
                 opt.UseSqlite(config.GetConnectionString("DefaultConnection"));
             });
-            services.AddDbContext<DataContext>(opt =>
-            {
-                opt.UseSqlite(config.GetConnectionString("DefaultConnection"));
-            });
+            
             services.AddCors(opt => 
             {
                 opt.AddPolicy("CorsPolicy", policy => 
